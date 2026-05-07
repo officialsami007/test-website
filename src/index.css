@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --deep-twilight:   #03045e;
+  --french-blue:     #023e8a;
+  --bright-teal:     #0077b6;
+  --blue-green:      #0096c7;
+  --turquoise-surf:  #00b4d8;
+  --sky-aqua:        #48cae4;
+  --frosted-blue:    #90e0ef;
+  --frosted-blue-2:  #ade8f4;
+  --light-cyan:      #caf0f8;
+
+  --brand-bg:            #ffffff;
+  --brand-bg-alt:        #caf0f8;
+  --brand-surface:       #ffffff;
+  --brand-heading:       var(--deep-twilight);
+  --brand-body:          var(--french-blue);
+  --brand-muted:         var(--bright-teal);
+  --brand-border:        rgba(173, 232, 244, 0.6);
+  --brand-border-strong: rgba(0, 150, 199, 0.3);
+  --brand-action:        var(--bright-teal);
+  --brand-action-hover:  var(--french-blue);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--brand-body);
+  font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  letter-spacing: -0.045em;
+  margin: 0;
+  color: inherit;
+}
+
+p   { margin: 0; color: inherit; }
+a   { color: inherit; text-decoration: none; }
+button, input, select, textarea { font-family: inherit; }
+input, select, textarea { color: var(--brand-heading); }
+input::placeholder, textarea::placeholder { color: rgba(2, 62, 138, 0.45); }
+
+::selection {
+  background: var(--sky-aqua);
+  color: var(--deep-twilight);
+}
+:focus-visible {
+  outline: 3px solid rgba(72, 202, 228, 0.65);
+  outline-offset: 3px;
+}
+
+/* ══════════════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════════════ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes floatA {
+  0%, 100% { transform: translateY(0px) rotate(0deg);     }
+  40%       { transform: translateY(-18px) rotate(1.5deg); }
+  70%       { transform: translateY(-10px) rotate(-1deg);  }
+}
+@keyframes floatB {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-22px); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0, 119, 182, 0.22); }
+  50%       { box-shadow: 0 8px 28px rgba(0, 150, 199, 0.35); }
+}
+@keyframes orbPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1);    }
+  50%       { opacity: 0.7; transform: scale(1.08); }
+}
+
+/* ══════════════════════════════════════════════════
+   SCROLL-TRIGGERED ANIMATIONS
+══════════════════════════════════════════════════ */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity  0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-animate].in-view { opacity: 1; transform: translateY(0); }
+
+[data-animate-fade] {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+[data-animate-fade].in-view { opacity: 1; }
+
+/* ══════════════════════════════════════════════════
+   HERO  —  #caf0f8 base, all text is dark brand blue
+══════════════════════════════════════════════════ */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 100% 65% at 50% -5%,  rgba(0, 180, 216, 0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 60%  70% at 8%   80%,  rgba(173, 232, 244, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 55%  70% at 92%  25%,  rgba(72, 202, 228, 0.25)  0%, transparent 55%),
+    #caf0f8;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 119, 182, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 119, 182, 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════
+   CUSTOM DEV SECTION  —  #ade8f4 base
+   Dark brand-blue text on a soft cyan bg = high contrast
+══════════════════════════════════════════════════ */
+.dev-bg {
+  background:
+    radial-gradient(ellipse 65% 80% at 95% 10%, rgba(0, 180, 216, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 65% at 5%  90%, rgba(72, 202, 228, 0.14) 0%, transparent 50%),
+    #ade8f4;
+}
+
+/* ══════════════════════════════════════════════════
+   GRADIENT TEXT  —  dark blue gradient for light bgs
+══════════════════════════════════════════════════ */
+.g-text-dark {
+  background: linear-gradient(130deg, #0077b6 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero is now light, so reuse g-text-dark here */
+.g-text-light {
+  background: linear-gradient(130deg, #023e8a 0%, #0077b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ══════════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════════ */
+.btn-primary {
+  background: linear-gradient(135deg, #79cefb 0%, #93dcf5 100%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  animation: btnGlow 3s ease-in-out infinite;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 28px rgba(0, 119, 182, 0.38);
+  animation: none;
+}
+
+/* Ghost button for light backgrounds */
+.btn-ghost-light {
+  border: 1.5px solid rgba(0, 119, 182, 0.35);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  color: #023e8a;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(0, 119, 182, 0.55);
+}
+
+/* ══════════════════════════════════════════════════
+   PRODUCT CARDS
+══════════════════════════════════════════════════ */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0077b6, #00b4d8, #48cae4);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 3px 3px 0 0;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(0, 119, 182, 0.12);
+}
+.product-card:hover::before { transform: scaleX(1); }
+
+/* ══════════════════════════════════════════════════
+   WHY TECFIQ REASON CARDS
+══════════════════════════════════════════════════ */
+.reason-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.reason-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 24px rgba(0, 119, 182, 0.1);
+  border-color: rgba(72, 202, 228, 0.65);
+}
+.reason-icon {
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.reason-card:hover .reason-icon {
+  background: var(--bright-teal);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════════
+   STEP CARDS (custom dev section — on #ade8f4 bg)
+══════════════════════════════════════════════════ */
+.step-card {
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.step-card:hover {
+  transform: translateX(6px);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 16px rgba(0, 119, 182, 0.1);
+}
+
+/* ══════════════════════════════════════════════════
+   MEGA MENU
+══════════════════════════════════════════════════ */
+.mega-menu {
+  animation: slideDown 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.mega-item {
+  transition: background 0.18s ease;
+}
+.mega-item:hover { background: rgba(202, 240, 248, 0.7); }
+.mega-item:hover .mega-icon {
+  background: var(--bright-teal);
+  color: #fff;
+}
+.mega-icon {
+  transition: background 0.2s ease, color 0.2s ease;
+}
