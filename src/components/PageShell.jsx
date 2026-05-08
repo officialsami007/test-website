@@ -5,77 +5,65 @@ export default function PageShell({
   eyebrow,
   title,
   description,
-  ctaText = "Contact TECFIQ",
+  ctaText = "Contact us",
   ctaHref = "/contact",
-  secondaryText,
-  secondaryHref,
+  secondaryCtaText,
+  secondaryCtaHref,
   features = [],
   children,
 }) {
   return (
-    <main className="bg-[#f0f9ff] text-[#03045e]">
-      {/* Header hero — dark */}
-      <section
-        className="relative overflow-hidden border-b border-[#ade8f4]/18"
-        style={{ background: "linear-gradient(150deg, #03045e 0%, #023e8a 100%)" }}
-      >
-        <div className="hero-grid opacity-35" />
-        <div className="relative mx-auto max-w-7xl px-5 py-24 text-center">
+    <main className="bg-white">
+      <section className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-5 py-20">
           {eyebrow && (
-            <p
-              className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-[#48cae4]"
-              style={{ animation: "fadeIn 0.55s ease both" }}
-            >
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-blue-700">
               {eyebrow}
             </p>
           )}
-          <h1
-            className="mx-auto max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl"
-            style={{ animation: "fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both" }}
-          >
+
+          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-slate-950 md:text-7xl">
             {title}
           </h1>
+
           {description && (
-            <p
-              className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#caf0f8]/75"
-              style={{ animation: "fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.22s both" }}
-            >
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
               {description}
             </p>
           )}
-          <div
-            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
-            style={{ animation: "fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.36s both" }}
-          >
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               to={ctaHref}
-              className="btn-primary inline-flex items-center gap-2 rounded-xl px-6 py-4 text-sm font-bold text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 py-4 text-sm font-bold text-white hover:bg-slate-800"
             >
               {ctaText} <ArrowRight size={18} />
             </Link>
-            {secondaryText && secondaryHref && (
+
+            {secondaryCtaText && secondaryCtaHref && (
               <Link
-                to={secondaryHref}
-                className="btn-ghost-light inline-flex items-center gap-2 rounded-xl px-6 py-4 text-sm font-bold"
+                to={secondaryCtaHref}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-4 text-sm font-bold text-slate-950 hover:bg-slate-100"
               >
-                {secondaryText}
+                {secondaryCtaText}
               </Link>
             )}
           </div>
         </div>
       </section>
 
-      {/* Feature grid */}
       {features.length > 0 && (
         <section className="bg-white">
-          <div className="mx-auto grid max-w-7xl gap-4 px-5 py-20 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-7xl gap-5 px-5 py-16 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
               <div
                 key={feature}
-                className="flex gap-3 rounded-[1.5rem] border border-[#ade8f4]/38 bg-[#f0f9ff] p-5 transition hover:border-[#48cae4]/55 hover:bg-white hover:shadow-sm"
+                className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-5"
               >
-                <CheckCircle2 className="mt-0.5 shrink-0 text-[#0077b6]" size={20} />
-                <p className="text-sm font-medium leading-6 text-[#03045e]">{feature}</p>
+                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-600" />
+                <p className="font-medium leading-6 text-slate-700">
+                  {feature}
+                </p>
               </div>
             ))}
           </div>
